@@ -1,0 +1,7 @@
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.csproj.AssemblyReference.cache
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.GeneratedMSBuildEditorConfig.editorconfig
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.AssemblyInfoInputs.cache
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.AssemblyInfo.cs
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.csproj.CoreCompileInputs.cache
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.MvcApplicationPartsAssemblyInfo.cs
+E:\Github Repos\DotNet-Task\DotNet-Task\obj\Debug\net7.0\DotNet-Task.MvcApplicationPartsAssemblyInfo.cache
