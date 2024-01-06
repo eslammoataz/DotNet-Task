@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DotNet_Task.Helpers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DotNet_Task.Controllers
 {
@@ -6,7 +7,69 @@ namespace DotNet_Task.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
+        private readonly ICategoryService _categoryService;
+
+        public CategoryController(ICategoryService categoryService)
+        {
+            _categoryService = categoryService;
+        }
+
+        [HttpGet]
+        public ActionResult<List<Category>> GetAllCategories()
+        {
+            var categories = _categoryService.GetAllCategories();
+            return Ok(categories);
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Category> GetCategoryById(string id)
+        {
+            var category = _categoryService.GetCategoryById(id);
+            if (category == null)
+            {
+                return NotFound(); // If category not found
+            }
+            return Ok(category);
+        }
+
+        [HttpPost]
+        public ActionResult<Category> AddCategory(CategoryDto categoryDto)
+        {
+            var newCategory = _categoryService.AddCategory(categoryDto);
+            return CreatedAtAction(nameof(GetCategoryById), new { id = newCategory.CategoryId }, newCategory);
+        }
+
+        [HttpPut]
+        public IActionResult UpdateCategory([FromQuery] string id, [FromBody] CategoryDto categoryDto)
+        {
+
+            var updatedCategory = _categoryService.UpdateCategory(id, categoryDto);
+            if (updatedCategory == null)
+            {
+                return NotFound(); // If category not found
+            }
+
+            return NoContent(); // Success, return no content
+        }
 
 
+        [HttpDelete("{id}")]
+        public ActionResult<Category> DeleteCategory(string id)
+        {
+            var deletedCategory = _categoryService.DeleteCategory(id);
+            if (deletedCategory == null)
+            {
+                return NotFound(); // If category not found
+            }
+
+            return Ok(deletedCategory); // Return the deleted category
+        }
+
+        //[HttpPost("AddSubCategoriesToCategory")]
+        //public ActionResult<List<SubCategory>> AddSubCategoriesToCategory(AddSubCategorytoCategory addSubCategorytoCategorydto)
+        //{
+        //    var subCategories = _categoryService.AddSubCategoriesToCategory(addSubCategorytoCategorydto.CategoryId, addSubCategorytoCategorydto.SubCategoriesIDs);
+        //    return Ok(subCategories);
+        //}
     }
 }

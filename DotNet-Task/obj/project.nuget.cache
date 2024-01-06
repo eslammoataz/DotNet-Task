@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8ETr/jLaiOTlh2tYxtSzqE/VOrkRMQbewMwW/VbjSeb7KDbFQiizAuqp+tILI0axEikExycqla14ZMrQUQa0HA==",
+  "dgSpecHash": "8ih7i9ttAmwP50zUYViFrlYvgGitrpAKjKfF6hbJeCg3ELLSa4CWj7tr55YaZ7UhNOkD6w/b4AL71atR3aFScg==",
   "success": true,
   "projectFilePath": "E:\\Github Repos\\DotNet-Task\\DotNet-Task\\DotNet-Task.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\7.0.14\\microsoft.entityframeworkcore.analyzers.7.0.14.nupkg.sha512",
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.entityframeworkcore.design\\7.0.14\\microsoft.entityframeworkcore.design.7.0.14.nupkg.sha512",
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.entityframeworkcore.relational\\7.0.14\\microsoft.entityframeworkcore.relational.7.0.14.nupkg.sha512",
+    "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.entityframeworkcore.tools\\7.0.14\\microsoft.entityframeworkcore.tools.7.0.14.nupkg.sha512",
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\7.0.0\\microsoft.extensions.caching.abstractions.7.0.0.nupkg.sha512",
     "C:\\Users\\Nemox\\.nuget\\packages\\microsoft.extensions.caching.memory\\7.0.0\\microsoft.extensions.caching.memory.7.0.0.nupkg.sha512",

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "mTLFIMOosVgUIXLvF31PNgzD51LlxtF9RHOXeLSsoKo=",
+  "Source": "DotNet-Task",
+  "BasePath": "_content/DotNet-Task",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

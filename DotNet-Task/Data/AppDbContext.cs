@@ -24,12 +24,13 @@ namespace DotNet_Task.Data
             modelBuilder.Entity<Category>()
                 .HasMany(c => c.SubCategories)
                 .WithOne(s => s.Category)
-                .HasForeignKey(s => s.CategoryId);
+                .HasForeignKey(s => s.CategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<SubCategory>().HasMany(s => s.Products)
                 .WithOne(p => p.SubCategory)
-                .HasForeignKey(p => p.SubCategoryId);
-
+                .HasForeignKey(p => p.SubCategoryId)
+                .OnDelete(DeleteBehavior.Cascade);
 
         }
     }

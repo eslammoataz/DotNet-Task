@@ -1,30 +1,94 @@
-﻿namespace DotNet_Task.Services.Product
+﻿using DotNet_Task.Data;
+using DotNet_Task.Helpers;
+
+namespace DotNet_Task.Models;
+
+public class ProductService : IProductService
 {
-    public class ProductService : IProductService
+    private readonly AppDbContext context;
+    private readonly ILogger<ProductService> logger;
+
+    public ProductService(AppDbContext context, ILogger<ProductService> logger)
     {
-        public Product AddProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product DeleteProduct(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Product> GetAllProducts()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product GetProductById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Product UpdateProduct(Product product)
-        {
-            throw new NotImplementedException();
-        }
+        this.context = context;
+        this.logger = logger;
     }
+    public Product AddProduct(ProductDto productDto)
+    {
+        var newProduct = new Product()
+        {
+
+            SubCategoryId = productDto.SubCategoryId,
+            ProductName = productDto.ProductName,
+            Price = productDto.Price,
+        };
+
+        try
+        {
+
+            context.Products.Add(newProduct);
+            context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Exception", ex);
+            throw;
+        }
+
+        return newProduct;
+    }
+
+
+    public Product DeleteProduct(string id)
+    {
+        var deletedProduct = context.Products.FirstOrDefault(p => p.ProductId == id);
+
+        if (deletedProduct == null)
+        {
+            return null; // Product not found
+        }
+
+        context.Products.Remove(deletedProduct);
+        try
+        {
+            context.SaveChanges();
+        }
+        catch (Exception ex)
+        {
+            logger.LogError("Exception", ex);
+            throw;
+        }
+
+        return deletedProduct;
+    }
+
+
+    public List<Product> GetAllProducts()
+    {
+        return context.Products.ToList();
+    }
+
+
+    public Product GetProductById(string id)
+    {
+        return context.Products.FirstOrDefault(p => p.ProductId == id);
+    }
+
+
+    public Product UpdateProduct(string id, ProductDto productDto)
+    {
+        var existingProduct = context.Products.FirstOrDefault(p => p.ProductId == id);
+
+        if (existingProduct != null)
+        {
+
+            existingProduct.SubCategoryId = productDto.SubCategoryId;
+            existingProduct.ProductName = productDto.ProductName;
+            existingProduct.Price = productDto.Price;
+            context.SaveChanges();
+        }
+
+        return existingProduct;
+    }
+
 }
