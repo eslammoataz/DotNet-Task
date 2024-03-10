@@ -1,5 +1,6 @@
 using DotNet_Task.Data;
 using DotNet_Task.Models;
+using DotNet_Task.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 {
     builder.Services.AddControllers();
-    // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
@@ -19,8 +19,8 @@ var builder = WebApplication.CreateBuilder(args);
     );
 
     builder.Services.AddScoped<ICategoryService, CategoryService>();
-    builder.Services.AddScoped<ISubCategoryService, SubCategoryService>();
     builder.Services.AddScoped<IProductService, ProductService>();
+    builder.Services.AddScoped<IImageService, ImageService>();
 
 
 }
@@ -41,8 +41,8 @@ var app = builder.Build();
         catch (Exception ex)
         {
             var LoggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
-            var Logger = LoggerFactory.CreateLogger<Program>(); // Creating a logger for the Program class
-            Logger.LogError(ex, ex.Message); // Logging the error
+            var Logger = LoggerFactory.CreateLogger<Program>();
+            Logger.LogError(ex, ex.Message);
         }
     }
 

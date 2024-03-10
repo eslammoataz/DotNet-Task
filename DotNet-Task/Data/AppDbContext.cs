@@ -8,29 +8,26 @@ namespace DotNet_Task.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
-        public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Image> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            //Defining the Ids
             modelBuilder.Entity<Category>().HasKey(c => c.CategoryId);
-            modelBuilder.Entity<SubCategory>().HasKey(s => s.SubCategoryId);
-            modelBuilder.Entity<Product>().HasKey(p => p.ProductId);
+            modelBuilder.Entity<Product>().HasKey(c => c.ProductId);
+            modelBuilder.Entity<Image>().HasKey(c => c.ImageId);
 
-            //Defining the relationships
-            modelBuilder.Entity<Category>()
-                .HasMany(c => c.SubCategories)
-                .WithOne(s => s.Category)
-                .HasForeignKey(s => s.CategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Product>()
+           .HasOne(p => p.Category)
+           .WithMany(c => c.Products)
+           .HasForeignKey(p => p.CategoryID);
 
-            modelBuilder.Entity<SubCategory>().HasMany(s => s.Products)
-                .WithOne(p => p.SubCategory)
-                .HasForeignKey(p => p.SubCategoryId)
-                .OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<Product>()
+        .HasMany(p => p.images)
+        .WithOne(i => i.Product)
+        .HasForeignKey(i => i.ProductId);
 
         }
     }

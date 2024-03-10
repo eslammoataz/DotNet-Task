@@ -11,10 +11,16 @@ namespace DotNet_Task.Models
 
         public string ProductName { get; set; }
 
-        public string SubCategoryId { get; set; }
-
-        public SubCategory SubCategory { get; set; }
-
         public double Price { get; set; }
+
+        public string size { get; set; }
+
+        public List<Image> images { get; set; } = new List<Image>();
+
+        public string color { get; set; }
+
+        public string CategoryID { get; set; }
+
+        public Category Category { get; set; }
     }
 }

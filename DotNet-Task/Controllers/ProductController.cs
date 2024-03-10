@@ -28,7 +28,7 @@ namespace DotNet_Task.Controllers
             var product = _productService.GetProductById(id);
             if (product == null)
             {
-                return NotFound(); // If product not found
+                return NotFound();
             }
             return Ok(product);
         }
@@ -37,7 +37,13 @@ namespace DotNet_Task.Controllers
         public ActionResult<Product> AddProduct(ProductDto productDto)
         {
             var newProduct = _productService.AddProduct(productDto);
-            return CreatedAtAction(nameof(GetProductById), new { id = newProduct.ProductId }, newProduct);
+
+            if (newProduct == null)
+            {
+                return BadRequest("Product not added");
+            }
+
+            return Ok(newProduct);
         }
 
         [HttpPut]
@@ -47,10 +53,10 @@ namespace DotNet_Task.Controllers
             var updatedProduct = _productService.UpdateProduct(id, productDto);
             if (updatedProduct == null)
             {
-                return NotFound(); // If product not found
+                return NotFound();
             }
 
-            return NoContent(); // Success, return no content
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
@@ -59,10 +65,10 @@ namespace DotNet_Task.Controllers
             var deletedProduct = _productService.DeleteProduct(id);
             if (deletedProduct == null)
             {
-                return NotFound(); // If product not found
+                return NotFound();
             }
 
-            return Ok(deletedProduct); // Return the deleted product
+            return Ok(deletedProduct);
         }
     }
 }

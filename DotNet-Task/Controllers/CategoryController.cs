@@ -27,7 +27,7 @@ namespace DotNet_Task.Controllers
             var category = _categoryService.GetCategoryById(id);
             if (category == null)
             {
-                return NotFound(); // If category not found
+                return NotFound("Category Not Found"); // If category not found
             }
             return Ok(category);
         }
@@ -59,17 +59,12 @@ namespace DotNet_Task.Controllers
             var deletedCategory = _categoryService.DeleteCategory(id);
             if (deletedCategory == null)
             {
-                return NotFound(); // If category not found
+                return NotFound("Category Not Found"); // If category not found
             }
 
             return Ok(deletedCategory); // Return the deleted category
         }
 
-        //[HttpPost("AddSubCategoriesToCategory")]
-        //public ActionResult<List<SubCategory>> AddSubCategoriesToCategory(AddSubCategorytoCategory addSubCategorytoCategorydto)
-        //{
-        //    var subCategories = _categoryService.AddSubCategoriesToCategory(addSubCategorytoCategorydto.CategoryId, addSubCategorytoCategorydto.SubCategoriesIDs);
-        //    return Ok(subCategories);
-        //}
+
     }
 }

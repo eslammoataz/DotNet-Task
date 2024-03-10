@@ -15,12 +15,16 @@ public class ProductService : IProductService
     }
     public Product AddProduct(ProductDto productDto)
     {
+
+
         var newProduct = new Product()
         {
 
-            SubCategoryId = productDto.SubCategoryId,
             ProductName = productDto.ProductName,
             Price = productDto.Price,
+            size = productDto.size,
+            color = productDto.color,
+            CategoryID = productDto.CategoryID
         };
 
         try
@@ -81,10 +85,11 @@ public class ProductService : IProductService
 
         if (existingProduct != null)
         {
-
-            existingProduct.SubCategoryId = productDto.SubCategoryId;
             existingProduct.ProductName = productDto.ProductName;
             existingProduct.Price = productDto.Price;
+            existingProduct.size = productDto.size;
+            existingProduct.color = productDto.color;
+
             context.SaveChanges();
         }
 

@@ -1,6 +1,5 @@
 ﻿using DotNet_Task.Data;
 using DotNet_Task.Helpers;
-using DotNet_Task.Models;
 
 public class CategoryService : ICategoryService
 {
@@ -16,9 +15,7 @@ public class CategoryService : ICategoryService
     {
         var newCategory = new Category()
         {
-
-            CategoryName = categoryDto.CategoryName,
-            SubCategories = new List<SubCategory>() { }
+            CategoryName = categoryDto.CategoryName
         };
 
         try
@@ -39,26 +36,6 @@ public class CategoryService : ICategoryService
 
     }
 
-    public List<SubCategory> AddSubCategoriesToCategory(string CategoryID, List<string> subcategoriesIDs)
-    {
-        var subCategories = new List<SubCategory>();
-
-        var category = context.Categories.FirstOrDefault(c => c.CategoryId == CategoryID);
-        if (category != null)
-        {
-            foreach (var subCategoryId in subcategoriesIDs)
-            {
-                var subCategory = context.SubCategories.FirstOrDefault(s => s.SubCategoryId == subCategoryId);
-                if (subCategory != null)
-                {
-                    subCategories.Add(subCategory);
-                    subCategory.CategoryId = CategoryID;
-                    category.SubCategories.Add(subCategory);
-                }
-            }
-        }
-        return subCategories;
-    }
 
     public Category DeleteCategory(string id)
     {
